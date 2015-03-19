@@ -19,10 +19,18 @@ type BNode struct {
 	Value int
 	Left  *BNode
 	Right *BNode
+	Count int
 }
 
-func NewBNode(key, val int) *BNode {
-	return &BNode{Key: key, Value: val}
+func NewBNode(key, val, count int) *BNode {
+	return &BNode{Key: key, Value: val, Count: count}
+}
+
+func (b *binarySearchTree) SizeNode(node *BNode) int {
+	if node == nil {
+		return 0
+	}
+	return node.Count
 }
 
 func (b *binarySearchTree) Get(key int) *int {
@@ -54,7 +62,7 @@ func (b *binarySearchTree) Put(key, val int) {
 
 func (b *binarySearchTree) put(root *BNode, key, val int) *BNode {
 	if root == nil {
-		return NewBNode(key, val)
+		return NewBNode(key, val, 1)
 	}
 	if key > b.Root.Key {
 		b.Root.Right = b.put(b.Root.Right, key, val)
@@ -63,5 +71,117 @@ func (b *binarySearchTree) put(root *BNode, key, val int) *BNode {
 	} else {
 		b.Root.Value = val
 	}
+	root.Count = 1 + b.SizeNode(root.Left) + b.SizeNode(root.Right)
 	return root
+}
+
+func (b *binarySearchTree) Min() int {
+	if b.Root == nil {
+		return -1 // FIXME: manage error
+	}
+
+	node := b.Root
+	for {
+		if node.Left != nil {
+			node = node.Left
+		} else {
+			break
+		}
+	}
+	return node.Value
+}
+
+func (b *binarySearchTree) Max() int {
+	if b.Root == nil {
+		return -1 // FIXME: manage error
+	}
+
+	node := b.Root
+	for {
+		if node.Right != nil {
+			node = node.Right
+		} else {
+			break
+		}
+	}
+
+	return node.Right.Value
+}
+
+// Floor returns the largest key <= to a given key
+func (b *binarySearchTree) Floor(key int) int {
+	node := b.floor(b.Root, key)
+	if node == nil {
+		return -1 // FIXME: manage error
+	}
+	return node.Key
+}
+
+func (b *binarySearchTree) floor(node *BNode, key int) *BNode {
+	if node == nil || node.Key == key {
+		return node
+	}
+
+	if key < node.Key {
+		return b.floor(node.Left, key)
+	} else {
+		if t := node.Right; t != nil {
+			return t
+		}
+		return node
+	}
+}
+
+func (b *binarySearchTree) Size() int {
+	return b.SizeNode(b.Root)
+}
+
+// Rank returns the number of key < k
+func (b *binarySearchTree) Rank(key int) int {
+	return b.rank(b.Root, key)
+}
+
+func (b *binarySearchTree) rank(node *BNode, key int) int {
+	if node == nil {
+		return 0
+	}
+
+	if key == node.Key {
+		return b.SizeNode(node)
+	} else if key < node.Key {
+		return b.SizeNode(node.Left)
+	} else {
+		return 1 + b.SizeNode(node.Left) + b.rank(node.Right, key)
+	}
+}
+
+// Ceil returns the smallest key >= to a given key
+func (b *binarySearchTree) Ceil(key int) int {
+	return 1 //todo
+}
+
+//In order traversal
+func (b *binarySearchTree) InOrder() <-chan int {
+	q := NewQueueLinkedList()
+	b.inOrder(b.Root, q)
+	ch := make(chan int)
+	go func() {
+		for {
+			if q.IsEmpty() {
+				break
+			}
+			ch <- q.Dequeue()
+		}
+		close(ch)
+
+	}()
+	return ch
+}
+
+func (b *binarySearchTree) inOrder(node *BNode, q Queue) {
+	if node != nil {
+		b.inOrder(node.Left, q)
+		q.Enqueue(node.Value)
+		b.inOrder(node.Right, q)
+	}
 }

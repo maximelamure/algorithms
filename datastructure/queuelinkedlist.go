@@ -8,14 +8,14 @@ type queueLinkedList struct {
 
 type Node struct {
 	Next  *Node
-	Value string
+	Value int
 }
 
 func NewQueueLinkedList() Queue {
 	return &queueLinkedList{}
 }
 
-func (q *queueLinkedList) Enqueue(value string) {
+func (q *queueLinkedList) Enqueue(value int) {
 	oldLast := q.Last
 	q.Last = &Node{}
 	q.Last.Value = value
@@ -29,7 +29,7 @@ func (q *queueLinkedList) Enqueue(value string) {
 	q.Length++
 }
 
-func (q *queueLinkedList) Dequeue() string {
+func (q *queueLinkedList) Dequeue() int {
 	if !q.IsEmpty() {
 		item := q.First.Value
 		q.Length--
@@ -40,7 +40,7 @@ func (q *queueLinkedList) Dequeue() string {
 		return item
 	}
 
-	return ""
+	return 0 //FIXME
 }
 func (q *queueLinkedList) IsEmpty() bool {
 	return q.Size() == 0

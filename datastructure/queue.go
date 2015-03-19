@@ -1,8 +1,8 @@
 package datastructure
 
 type Queue interface {
-	Enqueue(obj string)
-	Dequeue() string
+	Enqueue(obj int)
+	Dequeue() int
 	IsEmpty() bool
 	Size() int
 }
