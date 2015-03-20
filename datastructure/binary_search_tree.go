@@ -76,11 +76,17 @@ func (b *binarySearchTree) put(root *BNode, key, val int) *BNode {
 }
 
 func (b *binarySearchTree) Min() int {
-	if b.Root == nil {
-		return -1 // FIXME: manage error
+	min := b.min(b.Root)
+	if min != nil {
+		return min.Value
+	}
+	return 0 //FIXME
+}
+func (b *binarySearchTree) min(node *BNode) *BNode {
+	if node == nil {
+		return nil
 	}
 
-	node := b.Root
 	for {
 		if node.Left != nil {
 			node = node.Left
@@ -88,7 +94,7 @@ func (b *binarySearchTree) Min() int {
 			break
 		}
 	}
-	return node.Value
+	return node
 }
 
 func (b *binarySearchTree) Max() int {
@@ -184,4 +190,49 @@ func (b *binarySearchTree) inOrder(node *BNode, q Queue) {
 		q.Enqueue(node.Value)
 		b.inOrder(node.Right, q)
 	}
+}
+
+func (b *binarySearchTree) DeleteMin() {
+	b.Root = b.deleteMin(b.Root)
+}
+
+func (b *binarySearchTree) deleteMin(node *BNode) *BNode {
+	if node.Left == nil {
+		return node.Right
+	}
+	node.Left = b.deleteMin(node.Left)
+	node.Count = 1 + b.SizeNode(node.Left) + b.SizeNode(node.Right)
+	return node
+}
+
+func (b *binarySearchTree) HibbardDeletion(key int) {
+	b.Root = b.hibbardDeletion(b.Root, key)
+}
+
+func (b *binarySearchTree) hibbardDeletion(node *BNode, key int) *BNode {
+	if node == nil {
+		return nil
+	}
+
+	//BST to find the key
+	if key < node.Key {
+		return b.hibbardDeletion(node.Left, key)
+	} else if key > node.Key {
+		return b.hibbardDeletion(node.Right, key)
+	} else { // equality
+		if node.Left == nil {
+			return node.Right
+		}
+		if node.Right == nil {
+			return node.Left
+		}
+
+		t := node
+		node = b.min(t.Right)
+		b.deleteMin(t.Right)
+		node.Left = t.Left
+		node.Right = t.Right
+	}
+	node.Count = 1 + b.SizeNode(node.Left) + b.SizeNode(node.Right)
+	return node
 }
