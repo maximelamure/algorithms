@@ -1,8 +1,8 @@
 package datastructure
 
 type Stack interface {
-	Push(item string)
-	Pop() string
+	Push(item int)
+	Pop() int
 	IsEmpty() bool
 	Size() int
 }

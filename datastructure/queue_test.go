@@ -1,6 +1,7 @@
 package datastructure
 
 import (
+	"strconv"
 	"testing"
 
 	"github.com/maximelamure/api/common"
@@ -22,5 +23,5 @@ func testQueue(queue Queue, t *testing.T) {
 	queue.Dequeue()
 	queue.Dequeue()
 	item := queue.Dequeue()
-	helper.Assert(t, item == 3, "The value should be 3. Here: "+item)
+	helper.Assert(t, item == 3, "The value should be 3. Here: "+strconv.Itoa(item))
 }

@@ -1,5 +1,7 @@
 package datastructure
 
+import "fmt"
+
 // A BST is a binaray tree in symmetric order
 // A binary tree is
 // - either empty
@@ -20,6 +22,7 @@ type BNode struct {
 	Left  *BNode
 	Right *BNode
 	Count int
+	Level int
 }
 
 func NewBNode(key, val, count int) *BNode {
@@ -33,20 +36,20 @@ func (b *binarySearchTree) SizeNode(node *BNode) int {
 	return node.Count
 }
 
-func (b *binarySearchTree) Get(key int) *int {
+func (b *binarySearchTree) Get(key int) int {
 
 	x := b.Root
 	for {
 		if x == nil {
-			return nil
+			return -1 //FIXME
 		}
 
 		if x.Key == key {
-			return &x.Value
-		} else if x.Key > b.Root.Key {
-			x = b.Root.Right
+			return x.Value
+		} else if x.Key > key {
+			x = x.Left
 		} else {
-			x = b.Root.Left
+			x = x.Right
 		}
 	}
 }
@@ -64,12 +67,12 @@ func (b *binarySearchTree) put(root *BNode, key, val int) *BNode {
 	if root == nil {
 		return NewBNode(key, val, 1)
 	}
-	if key > b.Root.Key {
-		b.Root.Right = b.put(b.Root.Right, key, val)
-	} else if key < b.Root.Key {
-		b.Root.Left = b.put(b.Root.Left, key, val)
+	if key > root.Key {
+		root.Right = b.put(root.Right, key, val)
+	} else if key < root.Key {
+		root.Left = b.put(root.Left, key, val)
 	} else {
-		b.Root.Value = val
+		root.Value = val
 	}
 	root.Count = 1 + b.SizeNode(root.Left) + b.SizeNode(root.Right)
 	return root
@@ -104,14 +107,13 @@ func (b *binarySearchTree) Max() int {
 
 	node := b.Root
 	for {
-		if node.Right != nil {
-			node = node.Right
-		} else {
+		if node.Right == nil {
 			break
 		}
+		node = node.Right
 	}
 
-	return node.Right.Value
+	return node.Value
 }
 
 // Floor returns the largest key <= to a given key
@@ -161,11 +163,6 @@ func (b *binarySearchTree) rank(node *BNode, key int) int {
 	}
 }
 
-// Ceil returns the smallest key >= to a given key
-func (b *binarySearchTree) Ceil(key int) int {
-	return 1 //todo
-}
-
 //In order traversal
 func (b *binarySearchTree) InOrder() <-chan int {
 	q := NewQueueLinkedList()
@@ -178,6 +175,7 @@ func (b *binarySearchTree) InOrder() <-chan int {
 			}
 			ch <- q.Dequeue()
 		}
+
 		close(ch)
 
 	}()
@@ -235,4 +233,11 @@ func (b *binarySearchTree) hibbardDeletion(node *BNode, key int) *BNode {
 	}
 	node.Count = 1 + b.SizeNode(node.Left) + b.SizeNode(node.Right)
 	return node
+}
+
+func (b *binarySearchTree) String() {
+	for x := range b.InOrder() {
+		fmt.Print(x)
+	}
+	fmt.Println("")
 }

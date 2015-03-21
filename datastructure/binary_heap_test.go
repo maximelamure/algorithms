@@ -11,9 +11,6 @@ func BinarayHeap() []int {
 }
 
 func TestBinaryHeap(t *testing.T) {
-	//helper := common.Test{}
-	//helper.Assert(t, !queue.IsEmpty(), "The queue should not be empty")
-
 	bh := BinarayHeap()
 	su := sort.NewShuffle()
 	su.Sort(bh)

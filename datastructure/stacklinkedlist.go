@@ -6,7 +6,7 @@ type stackLinkedList struct {
 }
 
 type node struct {
-	Item string
+	Item int
 	Next *node
 }
 
@@ -14,7 +14,7 @@ func NewStackLinkedList() Stack {
 	return &stackLinkedList{}
 }
 
-func (s *stackLinkedList) Push(obj string) {
+func (s *stackLinkedList) Push(obj int) {
 	newNode := &node{}
 	newNode.Item = obj
 	newNode.Next = s.Current
@@ -22,14 +22,14 @@ func (s *stackLinkedList) Push(obj string) {
 	s.Lenght++
 }
 
-func (s *stackLinkedList) Pop() string {
+func (s *stackLinkedList) Pop() int {
 	if !s.IsEmpty() {
 		item := s.Current.Item
 		s.Current = s.Current.Next
 		s.Lenght--
 		return item
 	}
-	return "" //todo: manage error
+	return 0 //FIXME
 }
 
 func (s *stackLinkedList) IsEmpty() bool {
