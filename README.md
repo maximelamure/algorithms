@@ -9,7 +9,7 @@ An implementation in GO (golang) of the basic algorithms and data structure.
 - QuickSort
 - 3 Way QuickSort
 - HeapSort
-- Selec
+- Select
 - Shell
 - Shuffle  
 
