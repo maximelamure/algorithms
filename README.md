@@ -25,6 +25,7 @@ An implementation in GO (golang) of the basic algorithms and data structure.
 - Hash
  - Separate chaining
  - Linear probing
+- Graph (in progress)
  
 
 ## Union find

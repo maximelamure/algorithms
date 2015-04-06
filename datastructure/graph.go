@@ -6,13 +6,11 @@ import (
 )
 
 type Graph struct {
-	V           int
 	Adjacencies map[int]*Bag
 }
 
 // New Graph creates an empty Graph with v vertices
 func NewGraph() *Graph {
-
 	g := &Graph{}
 	g.Adjacencies = make(map[int]*Bag)
 	return g
