@@ -54,7 +54,7 @@ func (g *Graph) NbEdges() int {
 	for _, b := range g.Adjacencies {
 		total += b.Size()
 	}
-	return total
+	return total / 2
 }
 
 // String returns the string representation of the Graph
