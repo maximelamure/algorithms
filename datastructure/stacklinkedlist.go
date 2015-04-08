@@ -39,3 +39,18 @@ func (s *stackLinkedList) IsEmpty() bool {
 func (s *stackLinkedList) Size() int {
 	return s.Lenght
 }
+
+func (s *stackLinkedList) Iterate() <-chan int {
+	ch := make(chan int)
+	go func() {
+		for {
+			if s.IsEmpty() {
+				break
+			}
+			ch <- s.Pop()
+		}
+		close(ch)
+
+	}()
+	return ch
+}

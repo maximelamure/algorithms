@@ -28,4 +28,5 @@ func testStack(stack Stack, t *testing.T) {
 	stack.Pop()
 	pop := stack.Pop()
 	helper.Assert(t, pop == 1, "The value should be 1. Here: "+strconv.Itoa(pop))
+
 }

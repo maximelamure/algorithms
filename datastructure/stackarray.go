@@ -42,3 +42,18 @@ func (s *stackArray) IsEmpty() bool {
 func (s *stackArray) Size() int {
 	return s.Index
 }
+
+func (s *stackArray) Iterate() <-chan int {
+	ch := make(chan int)
+	go func() {
+		for {
+			if s.IsEmpty() {
+				break
+			}
+			ch <- s.Pop()
+		}
+		close(ch)
+
+	}()
+	return ch
+}

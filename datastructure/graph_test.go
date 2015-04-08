@@ -7,7 +7,7 @@ import (
 	"github.com/maximelamure/api/common"
 )
 
-func TestGraph(t *testing.T) {
+func GetGraph() *Graph {
 	g := NewGraph()
 	g.AddEdge(0, 1)
 	g.AddEdge(0, 2)
@@ -22,7 +22,11 @@ func TestGraph(t *testing.T) {
 	g.AddEdge(9, 11)
 	g.AddEdge(11, 12)
 	g.AddEdge(11, 11)
+	return g
+}
 
+func TestGraph(t *testing.T) {
+	g := GetGraph()
 	helper := common.Test{}
 	nb := 0
 	for _ = range g.Adj(0) {
@@ -44,4 +48,23 @@ func TestGraph(t *testing.T) {
 
 	//nb self loop
 	helper.Assert(t, g.NumberOfSelfLoops() == 1, "The number of loop  should be 1, get "+strconv.Itoa(g.NumberOfSelfLoops()))
+}
+
+func TestDFS(t *testing.T) {
+	helper := common.Test{}
+	g := GetGraph()
+	dfs := NewDFSPath(g)
+	dfs.DFS(0)
+
+	nbVertices := 0
+	for _ = range dfs.PathTo(0, 5) {
+		nbVertices++
+	}
+	helper.Assert(t, nbVertices == 5, "The number of vertices should be 5, get:"+strconv.Itoa(nbVertices))
+	//todo: add more tests
+	//nbVertices = 0
+	//for _ = range dfs.PathTo(0, 11) {
+	//	nbVertices++
+	//}
+	//helper.Assert(t, nbVertices == 0, "The number of vertices should be 0, get:"+strconv.Itoa(nbVertices))
 }

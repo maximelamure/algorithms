@@ -5,4 +5,5 @@ type Stack interface {
 	Pop() int
 	IsEmpty() bool
 	Size() int
+	Iterate() <-chan int
 }
