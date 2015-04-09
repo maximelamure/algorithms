@@ -53,18 +53,16 @@ func TestGraph(t *testing.T) {
 func TestDFS(t *testing.T) {
 	helper := common.Test{}
 	g := GetGraph()
-	dfs := NewDFSPath(g)
-	dfs.DFS(0)
-
+	dfs := NewDFSPath(g, 0)
 	nbVertices := 0
-	for _ = range dfs.PathTo(0, 5) {
+	for _ = range dfs.PathTo(5) {
 		nbVertices++
 	}
 	helper.Assert(t, nbVertices == 5, "The number of vertices should be 5, get:"+strconv.Itoa(nbVertices))
-	//todo: add more tests
-	//nbVertices = 0
-	//for _ = range dfs.PathTo(0, 11) {
-	//	nbVertices++
-	//}
-	//helper.Assert(t, nbVertices == 0, "The number of vertices should be 0, get:"+strconv.Itoa(nbVertices))
+
+	nbVertices = 0
+	for _ = range dfs.PathTo(11) {
+		nbVertices++
+	}
+	helper.Assert(t, nbVertices == 0, "The number of vertices should be 0, get:"+strconv.Itoa(nbVertices))
 }
