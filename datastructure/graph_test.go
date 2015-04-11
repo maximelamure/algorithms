@@ -1,6 +1,7 @@
 package datastructure
 
 import (
+	"fmt"
 	"strconv"
 	"testing"
 
@@ -65,4 +66,20 @@ func TestDFS(t *testing.T) {
 		nbVertices++
 	}
 	helper.Assert(t, nbVertices == 0, "The number of vertices should be 0, get:"+strconv.Itoa(nbVertices))
+}
+
+func TestBFS(t *testing.T) {
+	helper := common.Test{}
+	g := GetGraph()
+	bfs := NewBFSPath(g, 0)
+
+	nbVertices := 0
+	for _ = range bfs.PathTo(3) {
+		nbVertices++
+	}
+	helper.Assert(t, nbVertices == 3, "The number of vertices should be 3, get:"+strconv.Itoa(nbVertices))
+
+	for x := range bfs.BFS() {
+		fmt.Println(x)
+	}
 }

@@ -5,4 +5,5 @@ type Queue interface {
 	Dequeue() int
 	IsEmpty() bool
 	Size() int
+	Iterate() <-chan int
 }

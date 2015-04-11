@@ -48,3 +48,17 @@ func (q *queueLinkedList) IsEmpty() bool {
 func (q *queueLinkedList) Size() int {
 	return q.Length
 }
+
+func (q *queueLinkedList) Iterate() <-chan int {
+	ch := make(chan int)
+	go func() {
+		for {
+			if q.IsEmpty() {
+				break
+			}
+			ch <- q.Dequeue()
+		}
+		close(ch)
+	}()
+	return ch
+}
