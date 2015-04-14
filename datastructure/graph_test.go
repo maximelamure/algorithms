@@ -83,3 +83,11 @@ func TestBFS(t *testing.T) {
 		fmt.Println(x)
 	}
 }
+
+func TestCC(t *testing.T) {
+	//helper := common.Test{}
+	g := GetGraph()
+	bfs := NewConnectedComponent(g)
+
+	bfs.Display()
+}
