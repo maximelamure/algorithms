@@ -85,9 +85,11 @@ func TestBFS(t *testing.T) {
 }
 
 func TestCC(t *testing.T) {
-	//helper := common.Test{}
+	helper := common.Test{}
 	g := GetGraph()
 	bfs := NewConnectedComponent(g)
-
 	bfs.Display()
+	helper.Assert(t, bfs.GetID(5) == bfs.GetID(6), "5 and 6 should be connected")
+	helper.Assert(t, bfs.GetID(9) == bfs.GetID(12), "9 and 12 should be connected")
+	helper.Assert(t, bfs.GetID(5) != bfs.GetID(11), "5 and 11 should not be connected")
 }

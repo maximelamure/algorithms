@@ -28,6 +28,7 @@ An implementation in GO (golang) of the basic algorithms and data structure.
 - Graph (in progress)
  - Depth First Search (DFS)
  - Breadth First Search (BFS)
+ - Connected components
 
 ## Union find
 - QuickFind
