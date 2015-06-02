@@ -3,14 +3,15 @@
 An implementation in GO (golang) of the basic algorithms and data structure.
 
 ## Sorting algorithms
-- Selection
-- Insertion
-- Merge
-- QuickSort
-- 3 Way QuickSort
-- HeapSort
-- Select
-- Shell
+- Selection sort
+- Insertion sort
+- Bubble sort
+- Merge sort
+- Quick sort
+- 3 Way Quick sort
+- Heap sort
+- Select sort
+- Shell sort
 - Shuffle  
 
 ## DataStructure
