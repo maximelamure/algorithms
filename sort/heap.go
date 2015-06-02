@@ -2,7 +2,7 @@ package sort
 
 import "github.com/maximelamure/algorithms/common"
 
-//  Heao construction uses <= 2N compares and exchanges
+//  Heap construction uses <= 2N compares and exchanges
 // heapSort uses <= 2 N lg N compares and exchanges
 // heapSort is optimal for both time and space, but :
 // - Inner loop longer than quickSort's
