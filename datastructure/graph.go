@@ -14,6 +14,7 @@ func NewGraph() *Graph {
 	g := &Graph{}
 	g.Adjacencies = make(map[int]*Bag)
 	return g
+
 }
 
 //AddEdge add an edge v-w

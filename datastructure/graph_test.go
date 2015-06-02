@@ -2,6 +2,7 @@ package datastructure
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"testing"
 
@@ -56,13 +57,17 @@ func TestDFS(t *testing.T) {
 	g := GetGraph()
 	dfs := NewDFSPath(g, 0)
 	nbVertices := 0
-	for _ = range dfs.PathTo(5) {
+	log.Println("Path To 5")
+	for x := range dfs.PathTo(5) {
+		log.Println(x)
 		nbVertices++
 	}
 	helper.Assert(t, nbVertices == 5, "The number of vertices should be 5, get:"+strconv.Itoa(nbVertices))
 
 	nbVertices = 0
-	for _ = range dfs.PathTo(11) {
+	log.Println("Path To 11")
+	for x := range dfs.PathTo(11) {
+		log.Println(x)
 		nbVertices++
 	}
 	helper.Assert(t, nbVertices == 0, "The number of vertices should be 0, get:"+strconv.Itoa(nbVertices))

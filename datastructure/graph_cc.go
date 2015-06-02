@@ -1,6 +1,6 @@
 package datastructure
 
-import "code.google.com/go/src/pkg/fmt"
+import "fmt"
 
 // Vertices v and w are connected if there is a path between them.
 // Preprocess the Graph to answer queries of the form  is v connected to w in

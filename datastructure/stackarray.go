@@ -12,9 +12,8 @@ func NewStackArray() Stack {
 }
 
 func (s *stackArray) Push(item int) {
-	//Here we can use append. append is obtimized to set the capactity
-	// by 2 x the length when the slice is full
-	s.Items = append(s.Items, item)
+  s.Resize()
+  s.Items[s.Index] = item
 	s.Index++
 }
 
@@ -32,7 +31,11 @@ func (s *stackArray) Pop() int {
 func (s *stackArray) Resize() {
 	if cap(s.Items)/4 > s.Index {
 		s.Items = s.Items[0 : cap(s.Items)/2]
-	}
+	} else if cap(s.Items) == s.Index {
+    c := make([]int,1+ s.Index * 2)
+    copy(c, s.Items)
+    s.Items = c
+  }
 }
 
 func (s *stackArray) IsEmpty() bool {

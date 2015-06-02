@@ -24,9 +24,11 @@ func testStack(stack Stack, t *testing.T) {
 	stack.Push(3)
 	helper.Assert(t, !stack.IsEmpty(), "The stack should not be empty")
 	helper.Assert(t, stack.Size() == 3, "The stack length should be 3")
-	stack.Pop()
-	stack.Pop()
 	pop := stack.Pop()
-	helper.Assert(t, pop == 1, "The value should be 1. Here: "+strconv.Itoa(pop))
+  stack.Push(4)
+  pop = stack.Pop()
+  helper.Assert(t, pop == 4, "The value should be 4. Here: "+strconv.Itoa(pop))
+	pop = stack.Pop()
+	helper.Assert(t, pop == 2, "The value should be 2 Here: "+strconv.Itoa(pop))
 
 }
