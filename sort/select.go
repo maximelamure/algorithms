@@ -1,5 +1,7 @@
 package sort
 
+// Given an array of N items, find the kth largest
+
 func QuickSelect(a []int, k int) int {
 	//todo:Shuffle
 	i := 0
