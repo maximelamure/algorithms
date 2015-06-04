@@ -20,7 +20,7 @@ func (h *heapSort) Sort(arr []int) {
 	//create a binay heap
 	N := len(arr) - 1
 	for x := N / 2; x >= 1; x-- {
-		h.sink(arr, x, N)
+		h.Sink(arr, x, N)
 	}
 	// Delete the max
 
@@ -30,11 +30,12 @@ func (h *heapSort) Sort(arr []int) {
 		}
 		common.Swap(arr, 1, N)
 		N--
-		h.sink(arr, 1, N)
+		h.Sink(arr, 1, N)
 	}
 }
 
-func (h *heapSort) sink(arr []int, k, N int) {
+// Sink builds a Max heap using bottom-up method
+func (h *heapSort) Sink(arr []int, k, N int) {
 	for {
 		if k > N/2 {
 			break
