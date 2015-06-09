@@ -89,11 +89,6 @@ func testSort(s Sorter, t *testing.T) {
 	array := GetRandomArray()
 	s.Sort(array)
 	fmt.Println(array)
-	//for x := range array {
-	//	if x != 0 {
-	//		helper.Assert(t, array[x-1] <= array[x], "The array is not sorted "+strconv.Itoa(array[x-1])+" > "+strconv.Itoa(array[x]))
-	//	}
-	//}
 	helper.Assert(t, Sorted(array), "The array is not sorted ")
 }
 

@@ -14,14 +14,13 @@ func NewInsertionSort() Sorter {
 }
 
 func (s *insertionSort) Sort(arr []int) {
-	for x := range arr {
+	for x := 1; x < len(arr); x++ {
 		for y := x; y > 0; y-- {
 			if arr[y] < arr[y-1] {
 				common.Swap(arr, y, y-1)
 			} else {
 				break
 			}
-
 		}
 	}
 }

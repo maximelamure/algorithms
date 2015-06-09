@@ -29,11 +29,9 @@ func (s *shellSort) Sort(arr []int) {
 
 		// insertionSort
 		for i := h; i < len(arr); i++ {
-
 			for j := i; j >= h && arr[j] < arr[j-h]; j -= h {
 				common.Swap(arr, j, j-h)
 			}
-
 		}
 
 		h = h / 3

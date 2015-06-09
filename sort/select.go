@@ -1,9 +1,15 @@
 package sort
 
-// Given an array of N items, find the kth largest
-
+// QuickSelect returns the kth largest item in the given array
 func QuickSelect(a []int, k int) int {
-	//todo:Shuffle
+	if k > len(a)-1 {
+		return -1
+	}
+
+	//Shuffle
+	sh := NewShuffle()
+	sh.Sort(a)
+
 	i := 0
 	j := len(a) - 1
 
