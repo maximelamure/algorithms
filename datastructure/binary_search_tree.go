@@ -173,7 +173,7 @@ func (b *binarySearchTree) InOrder() <-chan int {
 			if q.IsEmpty() {
 				break
 			}
-			ch <- q.Dequeue()
+			ch <- q.Dequeue().(int)
 		}
 
 		close(ch)

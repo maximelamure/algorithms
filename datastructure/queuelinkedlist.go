@@ -8,14 +8,14 @@ type queueLinkedList struct {
 
 type Node struct {
 	Next  *Node
-	Value int
+	Value interface{}
 }
 
 func NewQueueLinkedList() Queue {
 	return &queueLinkedList{}
 }
 
-func (q *queueLinkedList) Enqueue(value int) {
+func (q *queueLinkedList) Enqueue(value interface{}) {
 	oldLast := q.Last
 	q.Last = &Node{}
 	q.Last.Value = value
@@ -29,7 +29,7 @@ func (q *queueLinkedList) Enqueue(value int) {
 	q.Length++
 }
 
-func (q *queueLinkedList) Dequeue() int {
+func (q *queueLinkedList) Dequeue() interface{} {
 	if !q.IsEmpty() {
 		item := q.First.Value
 		q.Length--
@@ -49,8 +49,8 @@ func (q *queueLinkedList) Size() int {
 	return q.Length
 }
 
-func (q *queueLinkedList) Iterate() <-chan int {
-	ch := make(chan int)
+func (q *queueLinkedList) Iterate() <-chan interface{} {
+	ch := make(chan interface{})
 	go func() {
 		for {
 			if q.IsEmpty() {

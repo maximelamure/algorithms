@@ -31,7 +31,7 @@ func (b *BFSPath) bfs(v int) {
 		if queue.IsEmpty() {
 			break
 		}
-		d := queue.Dequeue()
+		d := queue.Dequeue().(int)
 		b.Path.Enqueue(d)
 		for r := range b.G.Adj(d) {
 			if _, ok := b.DistTo[r]; !ok {
@@ -60,6 +60,6 @@ func (b *BFSPath) PathTo(v int) <-chan int {
 	return stack.Iterate()
 }
 
-func (b *BFSPath) BFS() <-chan int {
+func (b *BFSPath) BFS() <-chan interface{} {
 	return b.Path.Iterate()
 }

@@ -1,9 +1,9 @@
 package datastructure
 
 type Queue interface {
-	Enqueue(obj int)
-	Dequeue() int
+	Enqueue(obj interface{})
+	Dequeue() interface{}
 	IsEmpty() bool
 	Size() int
-	Iterate() <-chan int
+	Iterate() <-chan interface{}
 }

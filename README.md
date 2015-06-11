@@ -22,6 +22,8 @@ An implementation in GO (golang) of the basic algorithms and data structure.
  - Array
 - Iterator
 - Heap
+- Tree
+ - Breadth First Search (level order)
 - Binaray Search Tree (BST)
 - Hash
  - Separate chaining

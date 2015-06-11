@@ -23,5 +23,5 @@ func testQueue(queue Queue, t *testing.T) {
 	queue.Dequeue()
 	queue.Dequeue()
 	item := queue.Dequeue()
-	helper.Assert(t, item == 3, "The value should be 3. Here: "+strconv.Itoa(item))
+	helper.Assert(t, item.(int) == 3, "The value should be 3. Here: "+strconv.Itoa(item.(int)))
 }
