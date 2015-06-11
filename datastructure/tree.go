@@ -38,3 +38,65 @@ func (t *Tree) BFS() <-chan int {
 
 	return ch
 }
+
+// DFS traverse the tree in pre-order
+func (t *Tree) DFS() <-chan int {
+	ch := make(chan int)
+	go func() {
+		if t.root != nil {
+			stack := NewStackArray()
+			stack.Push(t.root)
+			for {
+				if stack.IsEmpty() {
+					break
+				}
+				n := stack.Pop().(*TNode)
+				ch <- n.value
+				if n.right != nil {
+					stack.Push(n.right)
+				}
+				if n.left != nil {
+					stack.Push(n.left)
+				}
+			}
+		}
+		close(ch)
+	}()
+	return ch
+}
+
+// InOrder traverse the tree in in-order
+func (t *Tree) InOrder() <-chan int {
+	ch := make(chan int)
+	go func() {
+		t.inOrder(t.root, ch)
+		close(ch)
+	}()
+	return ch
+}
+
+func (t *Tree) inOrder(node *TNode, ch chan int) {
+	if node != nil {
+		t.inOrder(node.left, ch)
+		ch <- node.value
+		t.inOrder(node.right, ch)
+	}
+}
+
+// PostOrder traverse the tree in post-order
+func (t *Tree) PostOrder() <-chan int {
+	ch := make(chan int)
+	go func() {
+		t.postOrder(t.root, ch)
+		close(ch)
+	}()
+	return ch
+}
+
+func (t *Tree) postOrder(node *TNode, ch chan int) {
+	if node != nil {
+		t.postOrder(node.left, ch)
+		t.postOrder(node.right, ch)
+		ch <- node.value
+	}
+}

@@ -47,7 +47,7 @@ func (g *DFSPath) HasPathTo(v int) bool {
 }
 
 // PathTo return a path between the vertice and the source
-func (g *DFSPath) PathTo(v int) <-chan int {
+func (g *DFSPath) PathTo(v int) <-chan interface{} {
 	stack := NewStackArray()
 	if g.HasPathTo(v) {
 

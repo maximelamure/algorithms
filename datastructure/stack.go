@@ -1,9 +1,9 @@
 package datastructure
 
 type Stack interface {
-	Push(item int)
-	Pop() int
+	Push(item interface{})
+	Pop() interface{}
 	IsEmpty() bool
 	Size() int
-	Iterate() <-chan int
+	Iterate() <-chan interface{}
 }

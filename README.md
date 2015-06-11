@@ -23,7 +23,10 @@ An implementation in GO (golang) of the basic algorithms and data structure.
 - Iterator
 - Heap
 - Tree
- - Breadth First Search (level order)
+ - DFS pre-order traversal (Depth First Search)
+ - DFS in order traversal (Depth First Search)
+ - DFS post-order traversal (Depth First Search)
+ - BFS level order (Breadth First Search)
 - Binaray Search Tree (BST)
 - Hash
  - Separate chaining

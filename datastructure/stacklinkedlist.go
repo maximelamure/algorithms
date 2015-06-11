@@ -6,7 +6,7 @@ type stackLinkedList struct {
 }
 
 type node struct {
-	Item int
+	Item interface{}
 	Next *node
 }
 
@@ -14,7 +14,7 @@ func NewStackLinkedList() Stack {
 	return &stackLinkedList{}
 }
 
-func (s *stackLinkedList) Push(obj int) {
+func (s *stackLinkedList) Push(obj interface{}) {
 	newNode := &node{}
 	newNode.Item = obj
 	newNode.Next = s.Current
@@ -22,7 +22,7 @@ func (s *stackLinkedList) Push(obj int) {
 	s.Lenght++
 }
 
-func (s *stackLinkedList) Pop() int {
+func (s *stackLinkedList) Pop() interface{} {
 	if !s.IsEmpty() {
 		item := s.Current.Item
 		s.Current = s.Current.Next
@@ -40,8 +40,8 @@ func (s *stackLinkedList) Size() int {
 	return s.Lenght
 }
 
-func (s *stackLinkedList) Iterate() <-chan int {
-	ch := make(chan int)
+func (s *stackLinkedList) Iterate() <-chan interface{} {
+	ch := make(chan interface{})
 	go func() {
 		for {
 			if s.IsEmpty() {
