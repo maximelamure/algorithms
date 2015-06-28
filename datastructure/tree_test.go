@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/maximelamure/api/common"
+	"github.com/maximelamure/algorithms/common"
 )
 
 func GenerateTree() (tree *Tree, bfs []int, dfs []int, inorder []int, postOrder []int) {

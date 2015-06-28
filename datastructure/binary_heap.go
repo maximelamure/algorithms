@@ -7,7 +7,7 @@ import (
 )
 
 // A binary heap could be represented by an array
-// - Largest key is arr[1], wich is root of binary treee
+// - Largest key is arr[1], wich is root of binary tree
 // - Can use array indices to move through tree
 //   - Parent of node k is k/2
 //   - Children of node at k are at 2k and 2k+1

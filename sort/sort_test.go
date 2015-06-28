@@ -11,7 +11,7 @@ func GetRandomArray() []int {
 	return []int{5, 3, 6, 10, 7, 8, 4, 5, 6, 3, 8, 4, 6, 2, 1, 7}
 }
 
-func Test_QuickSelect(t *testing.T) {
+func Test_QuickSelect2(t *testing.T) {
 	helper := common.Test{}
 	array := []int{5, 3, 6, 10, 7, 8, 4, 5, 6}
 	helper.Assert(t, QuickSelect(array, 1) == 4, "Error")

@@ -1,18 +1,19 @@
-package datastructure
+package datastructure_test
 
 import (
 	"strconv"
 	"testing"
 
-	"github.com/maximelamure/api/common"
+	"github.com/maximelamure/algorithms/common"
+	"github.com/maximelamure/algorithms/datastructure"
 )
 
 func TestQueueLinkedList(t *testing.T) {
-	queue := NewQueueLinkedList()
+	queue := datastructure.NewQueueLinkedList()
 	testQueue(queue, t)
 }
 
-func testQueue(queue Queue, t *testing.T) {
+func testQueue(queue datastructure.Queue, t *testing.T) {
 	helper := common.Test{}
 	queue.Enqueue(1)
 	queue.Enqueue(2)

@@ -1,5 +1,7 @@
 package datastructure
 
+import "fmt"
+
 // A Tree is a simple binaray tree
 type Tree struct {
 	root *TNode
@@ -10,6 +12,7 @@ type TNode struct {
 	value int
 	left  *TNode
 	right *TNode
+	level int
 }
 
 // BFS traverses the tree in the level order
@@ -98,5 +101,40 @@ func (t *Tree) postOrder(node *TNode, ch chan int) {
 		t.postOrder(node.left, ch)
 		t.postOrder(node.right, ch)
 		ch <- node.value
+	}
+}
+
+func (t *Tree) DisplayBFS() {
+	if t.root == nil {
+		return
+	}
+	queue := NewQueueLinkedList()
+	currentLevel := 0
+	nbItemByLevel := 0
+	queue.Enqueue(t.root)
+	for {
+		if queue.IsEmpty() {
+			return
+		}
+		current := queue.Dequeue().(*TNode)
+		if currentLevel != current.level {
+			fmt.Println("")
+			currentLevel++
+			nbItemByLevel = 0
+		}
+		if nbItemByLevel > 0 {
+			fmt.Print(",")
+		}
+		fmt.Print(current.value)
+		nbItemByLevel++
+
+		if current.left != nil {
+			current.left.level = current.level + 1
+			queue.Enqueue(current.left)
+		}
+		if current.right != nil {
+			current.right.level = current.level + 1
+			queue.Enqueue(current.right)
+		}
 	}
 }
