@@ -35,6 +35,9 @@ An implementation in GO (golang) of the basic algorithms and data structure.
  - Depth First Search (DFS)
  - Breadth First Search (BFS)
  - Connected components
+- Trie
+ - R-Way Trie
+ - Ternary Search Trie
 
 ## Union find
 - QuickFind
