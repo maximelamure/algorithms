@@ -44,3 +44,11 @@ An implementation in GO (golang) of the basic algorithms and data structure.
 - QuickUnion
 - Weighted QuickUnion
 - Weighted QuickUnion with path compression
+
+## Mathematic
+- Deletion
+- Multiplication
+- Division
+- Pow 
+- Fibonacci
+- IsPrime
