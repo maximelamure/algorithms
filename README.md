@@ -52,3 +52,4 @@ An implementation in GO (golang) of the basic algorithms and data structure.
 - Pow 
 - Fibonacci
 - IsPrime
+
