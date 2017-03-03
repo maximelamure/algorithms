@@ -47,9 +47,11 @@ func (t *TrieRWay) get(node *TRNode, key string, position int) interface{} {
 	if node == nil {
 		return nil
 	}
-	if position == 0 {
+	
+	if position == len(key)-1 {
 		return node.Key
 	}
+	
 	index := key[position] - 'a'
 	return t.get(node.Next[index], key, position+1)
 }
