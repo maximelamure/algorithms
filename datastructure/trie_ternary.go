@@ -35,9 +35,9 @@ func (t *Trie_Ternary) put(node *TTNode, key string, val interface{}, position i
 	if cmp == 0 {
 		node.Middle = t.put(node.Middle, key, val, position+1)
 	} else if cmp < 0 {
-		node.Left = t.put(node.Left, key, val, position+1)
+		node.Left = t.put(node.Left, key, val, position)
 	} else {
-		node.Right = t.put(node.Right, key, val, position+1)
+		node.Right = t.put(node.Right, key, val, position)
 	}
 	return node
 }
